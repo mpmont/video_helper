@@ -10,7 +10,7 @@
  * @category	Helpers
  * @author		Marco Monteiro
  * @link		www.marcomonteiro.net
- * @version 	1.0
+ * @version 	1.1.0
  */
 
 // ------------------------------------------------------------------------
@@ -74,7 +74,42 @@ if ( ! function_exists('vimeo_id'))
 	}
 }
 
-
+/**
+ *Get youtube video page
+ *
+ * @access	public
+ * @param	string		Youtube url || Youtube id
+ * @return	array   	url's video
+ */
+ if ( ! function_exists('youtube_fullvideo'))
+ {
+ 	function youtube_fullvideo( $url_id = '' )
+ 	{
+ 		if ( $url_id == '' )
+		{
+			return FALSE;
+		}
+		if ( !_isValidURL( $url_id ) )
+		{
+			if ( !_isValidID( $url_id ))
+			{
+				return FALSE;
+			}
+			else
+			{
+				$id = $url_id;
+			}	
+		}
+		if ( _isValidID( $url_id ) )
+		{
+			$id = $url_id;
+		}
+		else{
+			$id = youtube_id( $url_id );
+		}
+		return 'http://www.youtube.com/v/'.$id;
+ 	}
+ }
 
 /**
  * Get Youtube thumbs
