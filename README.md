@@ -19,13 +19,15 @@ That's it, your good to go.
 
 **YOUTUBE**
 
-With Youtube you can do 3 things:
+With Youtube you can do 4 things:
 
     - Get the id from a given url;
 
     - Get all the embed code for one video;
 
     - Get thumbnails from Youtube about the video.
+
+    - Get the url to the fullvideo in browser
 
 **To get the ID you can just use this:**
 
@@ -79,6 +81,17 @@ For this one you can pass a lot of param.
 **Example:**
 
 `echo youtube_embed($youtube_url);`
+
+
+**To get the fullvideo in browser link:**
+
+You can use both a Youtube URL or a Youtube ID.
+
+Example: 
+
+      $youtube_url = 'http://www.youtube.com/watch?v=SLk4Ia0otko';
+
+      youtube_fullvideo($youtube_url);
 
 ***
 
