@@ -1,0 +1,7 @@
+name: video_helper
+version: 1.0.2
+compatibility: 2.0.1
+
+dependencies: []
+
+tags: ["helper", "video", "vimeo", "youtube"]

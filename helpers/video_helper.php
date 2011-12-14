@@ -10,7 +10,7 @@
  * @category	Helpers
  * @author		Marco Monteiro
  * @link		www.marcomonteiro.net
- * @version 	1.1.0
+ * @version 	1.0.0
  */
 
 // ------------------------------------------------------------------------
