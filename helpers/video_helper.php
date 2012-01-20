@@ -5,12 +5,16 @@
 /**
  * MarcoMonteiro Video Helper
  *
+ * Serdar Senay (Lupelius)
+ * Fix applied where all methods had unnecessary if checks for checking
+ * valid ID, removed those as youtube|vimeo_id functions already check that
+ *
  * @package		CodeIgniter
  * @subpackage	Helpers
  * @category	Helpers
  * @author		Marco Monteiro
  * @link		www.marcomonteiro.net
- * @version 	1.0.0
+ * @version 	1.0.1
  */
 
 // ------------------------------------------------------------------------
@@ -26,7 +30,7 @@ if ( ! function_exists('youtube_id'))
 {
 	function youtube_id( $url = '')
 	{		
-		if ( $url == '' )
+		if ( $url === '' )
 		{
 			return FALSE;
 		}
@@ -37,6 +41,10 @@ if ( ! function_exists('youtube_id'))
 
 		preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
 
+		if(!$matches){
+			return FALSE;
+		}
+		
 		if ( !_isValidID( $matches[0] ))
 		{
 			return FALSE;
@@ -89,17 +97,6 @@ if ( ! function_exists('vimeo_id'))
 		{
 			return FALSE;
 		}
-		if ( !_isValidURL( $url_id ) )
-		{
-			if ( !_isValidID( $url_id ))
-			{
-				return FALSE;
-			}
-			else
-			{
-				$id = $url_id;
-			}	
-		}
 		if ( _isValidID( $url_id ) )
 		{
 			$id = $url_id;
@@ -123,24 +120,13 @@ if ( ! function_exists('youtube_thumbs'))
 {
 	function youtube_thumbs( $url_id = '', $thumb = '')
 	{		
-		if ( $url_id == '' )
+		if ( $url_id === '' )
 		{
 			return FALSE;
 		}
-		if ( $thumb == '' && $thumb > 4 )
+		if ($thumb > 4 || $thumb < 1)
 		{
 			return FALSE;
-		}
-		if ( !_isValidURL( $url_id ) )
-		{
-			if ( !_isValidID( $url_id ))
-			{
-				return FALSE;
-			}
-			else
-			{
-				$id = $url_id;
-			}	
 		}
 		if ( _isValidID( $url_id ) )
 		{
@@ -185,20 +171,13 @@ if ( ! function_exists('vimeo_thumbs'))
 		{
 			return FALSE;
 		}
-		if ( $thumb == '' && $thumb > 3 )
+		if ( $thumb < 1 || $thumb > 3 )
 		{
 			return FALSE;
 		}
 		if ( !_isValidURL( $url_id ) )
 		{
-			if ( !_isValidID( $url_id ))
-			{
-				return FALSE;
-			}
-			else
-			{
-				$id = $url_id;
-			}	
+			$id = $url_id;	
 		}
 		else{
 			$id = vimeo_id( $url_id );
@@ -219,7 +198,7 @@ if ( ! function_exists('vimeo_thumbs'))
 		{
 			return $result[$thumb];	
 		}
-		
+
 	}
 }
 
@@ -248,17 +227,7 @@ if ( ! function_exists('youtube_embebed'))
 		{
 			return FALSE;
 		}
-		if ( !_isValidURL( $url_id ) )
-		{
-			if ( !_isValidID( $url_id ))
-			{
-				return FALSE;
-			}
-			else
-			{
-				$id = $url_id;
-			}	
-		}
+		
 		if ( _isValidID( $url_id ) )
 		{
 			$id = $url_id;
