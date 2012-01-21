@@ -8,6 +8,7 @@
  * Serdar Senay (Lupelius)
  * Fix applied where all methods had unnecessary if checks for checking
  * valid ID, removed those as youtube|vimeo_id functions already check that
+ * Also added vimeo to _isValidID check, and added vime_fullvideo method
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
@@ -67,18 +68,19 @@ if ( ! function_exists('vimeo_id'))
 {
 	function vimeo_id( $url = '')
 	{		
-		if ( $url == '' )
+		if ( $url === '' )
 		{
 			return FALSE;
 		}
-		if (!_isValidURL( $url ))
-		{
-			return FALSE;
+		if (_isValidURL( $url ))
+		{	
+			sscanf(parse_url($url, PHP_URL_PATH), '/%d', $vimeo_id);
 		}
-
-		sscanf(parse_url($url, PHP_URL_PATH), '/%d', $vimeo_id);
-		//The id can't be checked without the API so for now I just return the id that is on url
-		return $vimeo_id;
+		else {
+			$vimeo_id = $url;
+		}
+		
+		return (_isValidID($vimeo_id,TRUE)) ? $vimeo_id : FALSE;
 	}
 }
 
@@ -105,6 +107,32 @@ if ( ! function_exists('vimeo_id'))
 			$id = youtube_id( $url_id );
 		}
 		return 'http://www.youtube.com/v/'.$id;
+ 	}
+ } 
+ 
+ /**
+ *Get vimeo video page
+ *
+ * @access	public
+ * @param	string		Vimeo ID
+ * @return	array   	url's video
+ */
+ if ( ! function_exists('vimeo_fullvideo'))
+ {
+ 	function vimeo_fullvideo( $url_id = '' )
+ 	{
+ 		if ( $url_id == '' )
+		{
+			return FALSE;
+		}
+		if ( _isValidID( $url_id ) )
+		{
+			$id = $url_id;
+		}
+		else{
+			$id = vimeo_id( $url_id );
+		}
+		return ($id) ? 'http://vimeo.com/'.$id : FALSE;
  	}
  }
 
@@ -182,7 +210,7 @@ if ( ! function_exists('vimeo_thumbs'))
 		else{
 			$id = vimeo_id( $url_id );
 		}
-
+		
 		$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$id.php"));
 
 		$result = array(
@@ -392,8 +420,8 @@ if ( ! function_exists('vimeo_embebed'))
 if ( ! function_exists('_isValidURL'))
 {
 	function _isValidURL($url = '')
-	{
-		return preg_match('|^(http(s)?://)?[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+	{	
+		return preg_match('/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:.[A-Z0-9][A-Z0-9_-]*)+):?(d+)?/i', $url);
 	}
 }
 
@@ -408,10 +436,13 @@ if ( ! function_exists('_isValidURL'))
  */
 if ( ! function_exists('_isValidID'))
 {
-	function _isValidID($id = '')
+	function _isValidID($id = '', $vimeo=FALSE)
 	{
-		$headers = get_headers('http://gdata.youtube.com/feeds/api/videos/' . $id);
-		if (!strpos($headers[0], '200')) 
+		if ($vimeo)
+			$headers = get_headers('http://vimeo.com/' . $id);
+		else
+			$headers = get_headers('http://gdata.youtube.com/feeds/api/videos/' . $id);
+		if (strpos($headers[0], '200') || strpos($headers[0], '400')) 
 		{
 		    return FALSE;
 		}
