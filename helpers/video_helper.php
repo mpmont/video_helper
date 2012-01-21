@@ -442,7 +442,7 @@ if ( ! function_exists('_isValidID'))
 			$headers = get_headers('http://vimeo.com/' . $id);
 		else
 			$headers = get_headers('http://gdata.youtube.com/feeds/api/videos/' . $id);
-		if (strpos($headers[0], '200') || strpos($headers[0], '400')) 
+		if (!strpos($headers[0], '200')) 
 		{
 		    return FALSE;
 		}
