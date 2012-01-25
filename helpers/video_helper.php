@@ -8,14 +8,14 @@
  * Serdar Senay (Lupelius)
  * Fix applied where all methods had unnecessary if checks for checking
  * valid ID, removed those as youtube|vimeo_id functions already check that
- * Also added vimeo to _isValidID check, and added vime_fullvideo method
+ * Also added vimeo to _isValidID check, and added vimeo_fullvideo method
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
  * @category	Helpers
  * @author		Marco Monteiro
- * @link		www.marcomonteiro.net
- * @version 	1.0.1
+ * @link			www.marcomonteiro.net
+ * @version 	1.0.4
  */
 
 // ------------------------------------------------------------------------
@@ -30,7 +30,7 @@
 if ( ! function_exists('youtube_id'))
 {
 	function youtube_id( $url = '')
-	{		
+	{
 		if ( $url === '' )
 		{
 			return FALSE;
@@ -45,7 +45,7 @@ if ( ! function_exists('youtube_id'))
 		if(!$matches){
 			return FALSE;
 		}
-		
+
 		if ( !_isValidID( $matches[0] ))
 		{
 			return FALSE;
@@ -67,19 +67,19 @@ if ( ! function_exists('youtube_id'))
 if ( ! function_exists('vimeo_id'))
 {
 	function vimeo_id( $url = '')
-	{		
+	{
 		if ( $url === '' )
 		{
 			return FALSE;
 		}
 		if (_isValidURL( $url ))
-		{	
+		{
 			sscanf(parse_url($url, PHP_URL_PATH), '/%d', $vimeo_id);
 		}
 		else {
 			$vimeo_id = $url;
 		}
-		
+
 		return (_isValidID($vimeo_id,TRUE)) ? $vimeo_id : FALSE;
 	}
 }
@@ -108,8 +108,8 @@ if ( ! function_exists('vimeo_id'))
 		}
 		return 'http://www.youtube.com/v/'.$id;
  	}
- } 
- 
+ }
+
  /**
  *Get vimeo video page
  *
@@ -147,7 +147,7 @@ if ( ! function_exists('vimeo_id'))
 if ( ! function_exists('youtube_thumbs'))
 {
 	function youtube_thumbs( $url_id = '', $thumb = '')
-	{		
+	{
 		if ( $url_id === '' )
 		{
 			return FALSE;
@@ -176,7 +176,7 @@ if ( ! function_exists('youtube_thumbs'))
 		}
 		else
 		{
-			return $result[$thumb];	
+			return $result[$thumb];
 		}
 	}
 }
@@ -194,7 +194,7 @@ if ( ! function_exists('youtube_thumbs'))
 if ( ! function_exists('vimeo_thumbs'))
 {
 	function vimeo_thumbs( $url_id = '', $thumb = '')
-	{		
+	{
 		if ( $url_id == '' )
 		{
 			return FALSE;
@@ -205,12 +205,12 @@ if ( ! function_exists('vimeo_thumbs'))
 		}
 		if ( !_isValidURL( $url_id ) )
 		{
-			$id = $url_id;	
+			$id = $url_id;
 		}
 		else{
 			$id = vimeo_id( $url_id );
 		}
-		
+
 		$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$id.php"));
 
 		$result = array(
@@ -224,7 +224,7 @@ if ( ! function_exists('vimeo_thumbs'))
 		}
 		else
 		{
-			return $result[$thumb];	
+			return $result[$thumb];
 		}
 
 	}
@@ -248,14 +248,14 @@ if ( ! function_exists('vimeo_thumbs'))
 
 if ( ! function_exists('youtube_embebed'))
 {
-	function youtube_embed( $url_id = '', $width = '', $height = '', 
+	function youtube_embed( $url_id = '', $width = '', $height = '',
 	$old_embed = FALSE, $hd = FALSE, $https = FALSE, $suggested = FALSE)
-	{		
+	{
 		if ( $url_id == '' )
 		{
 			return FALSE;
 		}
-		
+
 		if ( _isValidID( $url_id ) )
 		{
 			$id = $url_id;
@@ -371,15 +371,15 @@ if ( ! function_exists('youtube_embebed'))
  * @param 	number 		width
  * @param   number 		height
  * @param   boolean 	color
- * @param   boolean 	autoplay / default = FALSE 
+ * @param   boolean 	autoplay / default = FALSE
  * @return	string   	embebed code
  */
 
 if ( ! function_exists('vimeo_embebed'))
 {
-	function vimeo_embed( $url_id = '', $width = '', $height = '', 
+	function vimeo_embed( $url_id = '', $width = '', $height = '',
 	$color = '', $title = FALSE, $autoplay = FALSE)
-	{		
+	{
 		if ( $url_id == '' )
 		{
 			return FALSE;
@@ -420,7 +420,7 @@ if ( ! function_exists('vimeo_embebed'))
 if ( ! function_exists('_isValidURL'))
 {
 	function _isValidURL($url = '')
-	{	
+	{
 		return preg_match('/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:.[A-Z0-9][A-Z0-9_-]*)+):?(d+)?/i', $url);
 	}
 }
@@ -442,7 +442,7 @@ if ( ! function_exists('_isValidID'))
 			$headers = get_headers('http://vimeo.com/' . $id);
 		else
 			$headers = get_headers('http://gdata.youtube.com/feeds/api/videos/' . $id);
-		if (!strpos($headers[0], '200')) 
+		if (!strpos($headers[0], '200'))
 		{
 		    return FALSE;
 		}
