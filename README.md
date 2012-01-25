@@ -157,6 +157,18 @@ For this one you can pass a lot of param.
 
 `echo vimeo_embed($vimeo_url);`
 
+
+**To get the fullvideo in browser link:**
+
+You can use both a Vimeo URL or a Vimeo ID.
+
+Example:
+
+      $vimeo_url = 'http://vimeo.com/34792993';
+
+      vimeo_fullvideo($vimeo_url);
+
+
 ### CHANGE LOG:
 
 1.0.4
