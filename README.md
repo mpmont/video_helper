@@ -35,15 +35,15 @@ With Youtube you can do 4 things:
 
     $id = youtube_id($youtube_url);
 
-Note that the url could have the http or not. Also if the id that is extracted from url is not a valid youtube video the method youtube_id will return false. 
+Note that the url could have the http or not. Also if the id that is extracted from url is not a valid youtube video the method youtube_id will return false.
 
 **To get thumbnails from a given youtube url or id**
 
-This one accept two param: 
+This one accept two param:
 
       1 - Youtube URL or Youtube ID
 
-      2 - The thumbnail (1 to 4) 
+      2 - The thumbnail (1 to 4)
 
      (being the 1º one the big thumbnail, the next 3 the one you see when hovering a small thumbnail on vimeo)
 
@@ -73,7 +73,7 @@ For this one you can pass a lot of param.
       4 - Old or new embed, TRUE/FALSE, default FALSE (new embed);
 
       5 - HD, TRUE/FALSE, default FALSE;
-      
+
       6 - https, TRUE/FALSE, default FALSE;
 
       7 - Suggested videos, TRUE/FALSE, default FALSE;
@@ -87,7 +87,7 @@ For this one you can pass a lot of param.
 
 You can use both a Youtube URL or a Youtube ID.
 
-Example: 
+Example:
 
       $youtube_url = 'http://www.youtube.com/watch?v=SLk4Ia0otko';
 
@@ -116,13 +116,13 @@ Note that the url could have the http or not. In this case the video helper can'
 
 **To get thumbnails from a given Vimeo url or id**
 
-This one accept two param: 
+This one accept two param:
 
       1 - Vimeo URL or Vimeo ID
 
-      2 - The thumbnail (1 to 3) 
+      2 - The thumbnail (1 to 3)
 
-     (being the 1º one the small thumbnail, 2º is in medium size and the 3º in large size.) 
+     (being the 1º one the small thumbnail, 2º is in medium size and the 3º in large size.)
 
      (The only thing that changes is the size.)
 
@@ -156,3 +156,30 @@ For this one you can pass a lot of param.
 **Example:**
 
 `echo vimeo_embed($vimeo_url);`
+
+### CHANGE LOG:
+
+1.0.4
+
+- Fix typo com Lupelius comments
+
+- Remove extra spaces
+
+1.0.3 (by Serdar Senay (Lupelius))
+
+- Added vimeo_fullvideo method
+
+- Fix applied where all methods had unnecessary if checks for checking valid ID, removed those as youtube|vimeo_id functions already check that
+
+1.0.2
+
+- Change structure to meet spark requirements
+
+1.0.1
+
+- Fix typo
+- Fix problem with youtube embed
+
+1.0.0
+
+- Video Helper
