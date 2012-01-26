@@ -24,8 +24,8 @@
  * Get Youtube Id
  *
  * @access	public
- * @param	string		Youtube url
- * @return	string  	Youtube ID
+ * @param	string	Youtube url
+ * @return	string	Youtube ID
  */
 if ( ! function_exists('youtube_id'))
 {
@@ -61,8 +61,8 @@ if ( ! function_exists('youtube_id'))
  * Get Vimeo Id
  *
  * @access	public
- * @param	string		Vimeo url
- * @return	string  	Vimeo ID
+ * @param	string	Vimeo url
+ * @return	string	Vimeo ID
  */
 if ( ! function_exists('vimeo_id'))
 {
@@ -88,8 +88,8 @@ if ( ! function_exists('vimeo_id'))
  *Get youtube video page
  *
  * @access	public
- * @param	string		Youtube url || Youtube id
- * @return	array   	url's video
+ * @param	string	Youtube url || Youtube id
+ * @return	$array	url's video
  */
  if ( ! function_exists('youtube_fullvideo'))
  {
@@ -114,8 +114,8 @@ if ( ! function_exists('vimeo_id'))
  *Get vimeo video page
  *
  * @access	public
- * @param	string		Vimeo ID
- * @return	array   	url's video
+ * @param	string	Vimeo ID
+ * @return	$array	url's video
  */
  if ( ! function_exists('vimeo_fullvideo'))
  {
@@ -140,9 +140,9 @@ if ( ! function_exists('vimeo_id'))
  * Get Youtube thumbs
  *
  * @access	public
- * @param	string		Youtube url || Youtube id
- * @param 	number 		1 to 4 to return a specific thumb
- * @return	array   	url's to thumbs or specific thumb
+ * @param	string	Youtube url || Youtube id
+ * @param 	number	1 to 4 to return a specific thumb
+ * @return	array		url's to thumbs or specific thumb
  */
 if ( ! function_exists('youtube_thumbs'))
 {
@@ -189,7 +189,7 @@ if ( ! function_exists('youtube_thumbs'))
  * @access	public
  * @param	string		Vimeo url || Vimeo id
  * @param 	number 		1 to 3 to return a specific thumb
- * @return	array   	url's to thumbs or specific thumb
+ * @return	array 		url's to thumbs or specific thumb
  */
 if ( ! function_exists('vimeo_thumbs'))
 {
@@ -239,10 +239,10 @@ if ( ! function_exists('vimeo_thumbs'))
  * @param	string		Youtube url || Youtube id
  * @param 	number 		width
  * @param   number 		height
- * @param   boolean 	old embed / default = FALSE
- * @param   boolean 	HD / default = FALSE / The width and height will not be used if passed
- * @param   boolean 	https / default = FALSE
- * @param   boolean 	suggested videos / default = FALSE
+ * @param   boolean 		old embed / default = FALSE
+ * @param   boolean 		HD / default = FALSE / The width and height will not be used if passed
+ * @param   boolean 		https / default = FALSE
+ * @param   boolean 		suggested videos / default = FALSE
  * @return	string   	embebed code
  */
 
@@ -370,8 +370,8 @@ if ( ! function_exists('youtube_embebed'))
  * @param	string		Vimeo url || Vimeo id
  * @param 	number 		width
  * @param   number 		height
- * @param   boolean 	color
- * @param   boolean 	autoplay / default = FALSE
+ * @param   boolean 		color
+ * @param   boolean 		autoplay / default = FALSE
  * @return	string   	embebed code
  */
 
@@ -431,7 +431,7 @@ if ( ! function_exists('_isValidURL'))
  * Check if the id is valid or not
  *
  * @access private
- * @param string 		Youtube ID
+ * @param string 		Youtube ID OR Vimeo ID
  * @return boolean
  */
 if ( ! function_exists('_isValidID'))
