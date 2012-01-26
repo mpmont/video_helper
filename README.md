@@ -171,11 +171,13 @@ Example:
 
 ### CHANGE LOG:
 
-1.0.4
+1.0.5
 
 - Fix array indexes on thumbs (on both youtube and vimeo functions)
 
 - Fix typo: on function declaration for both embeds (youtube and vimeo)
+
+1.0.4
 
 - Fix typo com Lupelius comments
 

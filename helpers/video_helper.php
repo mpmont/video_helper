@@ -15,7 +15,7 @@
  * @category	Helpers
  * @author		Marco Monteiro
  * @link			www.marcomonteiro.net
- * @version 	1.0.4
+ * @version 	1.0.5
  */
 
 // ------------------------------------------------------------------------
