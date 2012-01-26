@@ -173,6 +173,10 @@ Example:
 
 1.0.4
 
+- Fix array indexes on thumbs (on both youtube and vimeo functions)
+
+- Fix typo: on function declaration for both embeds (youtube and vimeo)
+
 - Fix typo com Lupelius comments
 
 - Remove extra spaces
