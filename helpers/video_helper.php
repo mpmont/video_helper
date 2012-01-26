@@ -246,7 +246,7 @@ if ( ! function_exists('vimeo_thumbs'))
  * @return	string   	embebed code
  */
 
-if ( ! function_exists('youtube_embebed'))
+if ( ! function_exists('youtube_embed'))
 {
 	function youtube_embed( $url_id = '', $width = '', $height = '',
 	$old_embed = FALSE, $hd = FALSE, $https = FALSE, $suggested = FALSE)
@@ -375,7 +375,7 @@ if ( ! function_exists('youtube_embebed'))
  * @return	string   	embebed code
  */
 
-if ( ! function_exists('vimeo_embebed'))
+if ( ! function_exists('vimeo_embed'))
 {
 	function vimeo_embed( $url_id = '', $width = '', $height = '',
 	$color = '', $title = FALSE, $autoplay = FALSE)
