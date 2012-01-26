@@ -165,10 +165,10 @@ if ( ! function_exists('youtube_thumbs'))
 		}
 
 		$result = array(
-			'1' => 'http://img.youtube.com/vi/'.$id.'/0.jpg',
-			'2' => 'http://img.youtube.com/vi/'.$id.'/1.jpg',
-			'3' => 'http://img.youtube.com/vi/'.$id.'/2.jpg',
-			'4' => 'http://img.youtube.com/vi/'.$id.'/3.jpg'
+			'0' => 'http://img.youtube.com/vi/'.$id.'/0.jpg',
+			'1' => 'http://img.youtube.com/vi/'.$id.'/1.jpg',
+			'2' => 'http://img.youtube.com/vi/'.$id.'/2.jpg',
+			'3' => 'http://img.youtube.com/vi/'.$id.'/3.jpg'
 		);
 
 		if ( $thumb == '' ){
@@ -214,9 +214,9 @@ if ( ! function_exists('vimeo_thumbs'))
 		$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$id.php"));
 
 		$result = array(
-			'1' => $hash[0]['thumbnail_small'],
-			'2' => $hash[0]['thumbnail_medium'],
-			'3' => $hash[0]['thumbnail_large']
+			'0' => $hash[0]['thumbnail_small'],
+			'1' => $hash[0]['thumbnail_medium'],
+			'2' => $hash[0]['thumbnail_large']
 		);
 
  		if ( $thumb == '' ){
