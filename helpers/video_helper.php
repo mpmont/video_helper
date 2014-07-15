@@ -372,13 +372,14 @@ if ( ! function_exists('youtube_embed'))
  * @param   number 		height
  * @param   boolean 		color
  * @param   boolean 		autoplay / default = FALSE
+ * @param   boolean 		https / default = FALSE
  * @return	string   	embebed code
  */
 
 if ( ! function_exists('vimeo_embed'))
 {
 	function vimeo_embed( $url_id = '', $width = '', $height = '',
-	$color = '', $title = FALSE, $autoplay = FALSE)
+	$color = '', $title = FALSE, $autoplay = FALSE, $https = FALSE)
 	{
 		if ( $url_id == '' )
 		{
@@ -393,7 +394,17 @@ if ( ! function_exists('vimeo_embed'))
 			$id = vimeo_id( $url_id );
 		}
 
-		$embed = '<iframe src="http://player.vimeo.com/video/'.$id.'?byline=0&amp;portrait=0&amp;';
+		$embed = '<iframe src="';
+		if ( $https )
+		{
+			$embed .= 'https';
+		}
+		else
+		{
+			$embed .= 'http';
+		}
+
+		$embed .= '://player.vimeo.com/video/'.$id.'?byline=0&amp;portrait=0&amp;';
 		if ( $color != '' )
 		{
 			$embed .= 'color='.$color.'&amp;';
