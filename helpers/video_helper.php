@@ -40,21 +40,23 @@ if ( ! function_exists('youtube_id'))
 			return FALSE;
 		}
 
-		preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
+		preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $matches);
 
 		if(!$matches){
 			return FALSE;
 		}
 
-		if ( !_isValidID( $matches[0] ))
+		if ( !_isValidID( $matches[1] ))
 		{
 			return FALSE;
 		}
 		else{
-			return $matches[0];
+			return $matches[1];
 		}
 	}
 }
+
+
 
 
 /**
