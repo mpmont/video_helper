@@ -43,16 +43,11 @@ if ( ! function_exists('youtube_id'))
 		preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
 
 		if(!$matches){
-			return FALSE;
+
+		return FALSE;
 		}
 
-		if ( !_isValidID( $matches[0] ))
-		{
-			return FALSE;
-		}
-		else{
-			return $matches[0];
-		}
+		return $matches[0];
 	}
 }
 
@@ -106,7 +101,7 @@ if ( ! function_exists('vimeo_id'))
 		else{
 			$id = youtube_id( $url_id );
 		}
-		return 'http://www.youtube.com/v/'.$id;
+		return 'https://www.youtube.com/v/'.$id;
  	}
  }
 
@@ -132,7 +127,7 @@ if ( ! function_exists('vimeo_id'))
 		else{
 			$id = vimeo_id( $url_id );
 		}
-		return ($id) ? 'http://vimeo.com/'.$id : FALSE;
+		return ($id) ? 'https://vimeo.com/'.$id : FALSE;
  	}
  }
 
@@ -152,7 +147,7 @@ if ( ! function_exists('youtube_thumbs'))
 		{
 			return FALSE;
 		}
-		if ($thumb > 4 || $thumb < 1)
+		if ($thumb > 3 || $thumb < 0)
 		{
 			return FALSE;
 		}
@@ -165,13 +160,13 @@ if ( ! function_exists('youtube_thumbs'))
 		}
 
 		$result = array(
-			'0' => 'http://img.youtube.com/vi/'.$id.'/0.jpg',
-			'1' => 'http://img.youtube.com/vi/'.$id.'/1.jpg',
-			'2' => 'http://img.youtube.com/vi/'.$id.'/2.jpg',
-			'3' => 'http://img.youtube.com/vi/'.$id.'/3.jpg'
+			'0' => 'https://img.youtube.com/vi/'.$id.'/0.jpg',
+			'1' => 'https://img.youtube.com/vi/'.$id.'/1.jpg',
+			'2' => 'https://img.youtube.com/vi/'.$id.'/2.jpg',
+			'3' => 'https://img.youtube.com/vi/'.$id.'/3.jpg'
 		);
 
-		if ( $thumb == '' ){
+		if ( $thumb === '' ){
 			return $result;
 		}
 		else
@@ -211,7 +206,7 @@ if ( ! function_exists('vimeo_thumbs'))
 			$id = vimeo_id( $url_id );
 		}
 
-		$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$id.php"));
+		$hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/$id.php"));
 
 		$result = array(
 			'0' => $hash[0]['thumbnail_small'],
@@ -219,7 +214,7 @@ if ( ! function_exists('vimeo_thumbs'))
 			'2' => $hash[0]['thumbnail_large']
 		);
 
- 		if ( $thumb == '' ){
+		if ( $thumb == '' ){
 			return $result;
 		}
 		else
@@ -450,9 +445,9 @@ if ( ! function_exists('_isValidID'))
 	function _isValidID($id = '', $vimeo=FALSE)
 	{
 		if ($vimeo)
-			$headers = get_headers('http://vimeo.com/' . $id);
+			$headers = get_headers('https://vimeo.com/' . $id);
 		else
-			$headers = get_headers('http://gdata.youtube.com/feeds/api/videos/' . $id);
+			$headers = get_headers('https://gdata.youtube.com/feeds/api/videos/' . $id);
 		if (!strpos($headers[0], '200'))
 		{
 		    return FALSE;
