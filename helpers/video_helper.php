@@ -148,7 +148,7 @@ if ( ! function_exists('youtube_thumbs'))
 		{
 			return FALSE;
 		}
-		if ($thumb > 4 || $thumb < 1)
+		if ($thumb > 3 || $thumb < 0)
 		{
 			return FALSE;
 		}
@@ -167,7 +167,7 @@ if ( ! function_exists('youtube_thumbs'))
 			'3' => 'http://img.youtube.com/vi/'.$id.'/3.jpg'
 		);
 
-		if ( $thumb == '' ){
+		if ( $thumb === '' ){
 			return $result;
 		}
 		else
