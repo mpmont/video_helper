@@ -31,28 +31,24 @@ if ( ! function_exists('youtube_id'))
 {
 	function youtube_id( $url = '')
 	{
-		if ( $url === '' )
-		{
-			return FALSE;
-		}
-		if (!_isValidURL( $url ))
-		{
-			return FALSE;
-		}
 
-		preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
+        if ( $url === '' )
+        {
+            return FALSE;
+        }
+        if (!_isValidURL( $url ))
+        {
+            return FALSE;
+        }
 
-		if(!$matches){
-			return FALSE;
-		}
+        preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
 
-		if ( !_isValidID( $matches[0] ))
-		{
-			return FALSE;
-		}
-		else{
-			return $matches[0];
-		}
+        if(!$matches){
+
+            return FALSE;
+        }
+
+        return $matches[0];
 	}
 }
 
