@@ -31,24 +31,23 @@ if ( ! function_exists('youtube_id'))
 {
 	function youtube_id( $url = '')
 	{
+		if ( $url === '' )
+		{
+			return FALSE;
+		}
+		if (!_isValidURL( $url ))
+		{
+			return FALSE;
+		}
 
-        if ( $url === '' )
-        {
-            return FALSE;
-        }
-        if (!_isValidURL( $url ))
-        {
-            return FALSE;
-        }
+		preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
 
-        preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
+		if(!$matches){
 
-        if(!$matches){
+		return FALSE;
+		}
 
-            return FALSE;
-        }
-
-        return $matches[0];
+		return $matches[0];
 	}
 }
 
@@ -215,7 +214,7 @@ if ( ! function_exists('vimeo_thumbs'))
 			'2' => $hash[0]['thumbnail_large']
 		);
 
- 		if ( $thumb == '' ){
+		if ( $thumb == '' ){
 			return $result;
 		}
 		else
